@@ -9,3 +9,4 @@ Route::get('/', [MundialController::class, 'index'])->name('mundiales.index');
 // RUTA DE DETALLE: Se mantiene para ver un mundial específico (ej: /mundiales/2022)
 // Se mantiene el prefijo 'mundiales' para seguir la convención de URLs descriptivas.
 Route::get('/mundiales/{mundial}', [MundialController::class, 'show'])->name('mundiales.show');;
+
