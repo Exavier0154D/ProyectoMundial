@@ -1,11 +1,146 @@
-@import 'tailwindcss';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* 1. Importación de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* 2. Definición de Clases de Fuentes y Utilidades */
+/* Clases globales (las usaremos en el body y en elementos específicos) */
+.text-serif {
+    font-family: 'Merriweather', Georgia, serif !important;
+    line-height: 1.6;
+}
+
+.font-elegant {
+    font-family: 'Merriweather', Georgia, serif !important;
+}
+
+.font-title {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.bg-light-gray {
+    background-color: #f7f7f7 !important; /* Fondo blanco roto/crema para el body */
+}
+
+/* 3. Estilos Exclusivos para el Mundial 1930 (AUMENTANDO ESPECIFICIDAD) */
+.mundial-1930 {
+    
+    /* Forzar texto justificado y fuente del cuerpo */
+    .mundial-1930 p {
+        text-align: justify;
+        font-family: 'Merriweather', Georgia, serif !important;
+    }
+    
+    /* Colores más sobrios y texto blanco para card-headers */
+    .mundial-1930 .card-header.bg-dark,
+    .mundial-1930 .card-header.bg-primary {
+        background-color: #4b4b4b !important;
+        color: white !important; /* Asegurar que el texto sea blanco */
+    }
+    
+    .mundial-1930 .card-header.bg-success {
+        background-color: #004d00 !important; 
+        color: white !important;
+    }
+
+    /* Estilo para títulos (H1) */
+    .mundial-1930 h1.display-4,
+    .mundial-1930 .font-title {
+        color: #3d3d3d !important;
+        font-family: 'Playfair Display', serif !important;
+    }
+
+    /* Divisor Clásico */
+    .mundial-1930 .divider-classic {
+        height: 1px;
+        background-color: #333;
+        position: relative;
+        margin: 30px auto;
+        width: 60%;
+    }
+    
+    .mundial-1930 .divider-classic::after {
+        content: "— 📜 —";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f7f7f7; /* Fondo del divisor, a juego con el body */
+        padding: 0 10px;
+        color: #333;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+    }
+    
+    /* Asegurar esquinas de botones */
+    .mundial-1930 .btn {
+        border-radius: 0 !important;
+    }
+
+    /* Asegurar fuente en la tabla */
+    .mundial-1930 table {
+        font-family: 'Merriweather', Georgia, serif !important;
+    }
+
+    /* ... [Tu código de importaciones de Tailwind/Bootstrap y Google Fonts] ... */
+
+/* 2. Definición de Clases de Fuentes y Utilidades */
+/* Aseguramos que la tipografía se aplique a los elementos del cuerpo (Body) */
+body {
+    font-family: 'Merriweather', Georgia, serif !important;
+    background-color: #f7f7f7 !important; /* Fondo blanco roto/crema */
+}
+
+.text-serif {
+    font-family: 'Merriweather', Georgia, serif !important;
+    line-height: 1.6;
+}
+
+.font-elegant {
+    font-family: 'Merriweather', Georgia, serif !important;
+    color: #3d3d3d !important; /* Gris oscuro para el texto elegante */
+}
+
+.font-title {
+    font-family: 'Playfair Display', serif !important;
+    color: #3d3d3d !important;
+}
+
+.bg-light-gray {
+    background-color: #f7f7f7 !important;
+}
+
+/* 3. Estilos de Colores Elegantes y Sobrios (Index y Navbar) */
+
+/* Títulos Principales */
+.container-fluid h1 {
+    color: #4b4b4b !important; /* Gris oscuro elegante */
+    font-family: 'Playfair Display', serif !important;
+}
+
+/* Botones de Tarjeta y Navbar (Sobrio) */
+.btn-outline-dark, .btn-dark, .btn-outline-primary {
+    border-radius: 0 !important;
+    border-color: #6c757d !important; /* Borde gris oscuro */
+    color: #6c757d !important;
+}
+
+/* Color de acento para Campeón (Success) */
+.text-success {
+    color: #004d00 !important; /* Verde oscuro (como el laurel) */
+    font-weight: bold;
+}
+
+
+/* 4. Ajustes Específicos del Navbar */
+.navbar-brand.font-title {
+    color: #3d3d3d !important;
+    font-size: 2rem !important;
+}
+
+
+/* ... [Tu código exclusivo para .mundial-1930] ... */
+/* Asegúrate de que las reglas dentro de .mundial-1930 también usen los !important */
 }

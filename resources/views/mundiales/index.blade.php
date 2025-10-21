@@ -1,21 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- CAMBIAMOS 'container' POR 'container-fluid' PARA USAR EL ANCHO MÁXIMO --}}
-    <div class="container-fluid"> 
-        <h1 class="mb-5 text-center fw-bold text-primary">⚽ Índice de la Copa Mundial de la FIFA (1930 - 2022) 🏆</h1>
+    {{-- Contenedor principal --}}
+    <div class="container-fluid py-4 text-serif bg-white shadow-lg"> 
+
+        {{-- BOTÓN DE REGRESO AL HUB --}}
+        <div class="mb-4 ps-5">
+            {{-- Usamos la ruta nombrada 'hub.index' --}}
+            <a href="{{ route('hub.index') }}" class="btn btn-outline-dark btn-lg font-elegant shadow-sm btn-classic">
+                ← Regresar al Menú Principal (Hub)
+            </a>
+        </div>
         
-        <div class="row">
-            {{-- Itera sobre la lista de 22 Mundiales obtenida del controlador --}}
+        <h1 class="mb-5 text-center fw-bold text-dark font-title fs-2">
+            ⚽ Índice de la Copa Mundial de la FIFA (1930 - 2022) 🏆
+        </h1>
+        
+        <div class="row px-5">
             @foreach ($mundiales as $mundial)
                 
-                {{-- Mantenemos las clases de distribución para 4 columnas en pantallas grandes --}}
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     
-                    <div class="card h-100 shadow-lg border-secondary text-center hover-effect">
+                    <div class="card h-100 shadow-sm border-dark-subtle text-center hover-effect card-elegant">
                         
-                        {{-- Logo del Mundial. Asume que las imágenes están en public/img/logos/ --}}
-                        <div class="p-3">
+                        {{-- Logo del Mundial --}}
+                        <div class="p-3 border-bottom border-secondary-subtle">
                             <img src="{{ asset($mundial->logo_url ?? 'img/logos/default.png') }}" 
                                  alt="Logo {{ $mundial->anio }}" 
                                  class="card-img-top mx-auto" 
@@ -39,7 +48,7 @@
                             </p>
 
                             {{-- Botón de Navegación a la vista de detalle --}}
-                            <a href="{{ route('mundiales.show', $mundial) }}" class="btn btn-outline-primary btn-sm mt-auto shadow-sm">
+                            <a href="{{ route('enciclopedia.show', $mundial) }}" class="btn btn-outline-dark btn-sm mt-auto shadow-sm btn-classic">
                                 Ver Detalles
                             </a>
                         </div>
