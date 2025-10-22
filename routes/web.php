@@ -2,41 +2,42 @@
 
 use App\Http\Controllers\HubController;
 use App\Http\Controllers\MundialController;
+use App\Http\Controllers\JuegosController;
 use App\Http\Controllers\TriviaController;
-use App\Http\Controllers\JuegosController; // Añadir el nuevo controlador de Índice de Juegos
+use App\Http\Controllers\AdivinaCampeonController; // <-- AÑADIDO: Importa el nuevo controlador
 use Illuminate\Support\Facades\Route; 
-use Illuminate\Support\Facades\Auth;   
+use Illuminate\Support\Facades\Auth; 
 
-// ======================================
-// 1. RUTA PRINCIPAL (HUB)
-// ======================================
+// Rutas Públicas
 Route::get('/', [HubController::class, 'index'])->name('hub.index');
 
-// ======================================
-// 2. SECCIÓN ENCICLOPEDIA
-// ======================================
 Route::get('/enciclopedia', [MundialController::class, 'index'])->name('enciclopedia.index');
 Route::get('/enciclopedia/{mundial}', [MundialController::class, 'show'])->name('enciclopedia.show');
 
-// ======================================
-// 3. MINIJUEGOS (PROTEGIDO)
-// Todas estas rutas requieren que el usuario esté logueado.
-// ======================================
+// Rutas Protegidas (Requieren autenticación)
 Route::middleware(['auth'])->group(function () {
     
-    // RUTA 3.1: Muestra la CUADRÍCULA de todos los minijuegos
+    // Índice de Juegos
     Route::get('/juegos', [JuegosController::class, 'index'])->name('juegos.index');
     
-    // RUTA 3.2: RUTA ESPECÍFICA para iniciar el juego de Trivia
-    // El controlador de Trivia manejará la lógica del juego.
+    // Rutas de los 8 Minijuegos
+    
+    // 1. Trivia
     Route::get('/juegos/trivia', [TriviaController::class, 'index'])->name('juegos.trivia');
     
-    // Aquí irán otras rutas de juegos específicos
+    // 2. Adivina el Campeón (USA SU PROPIO CONTROLADOR Y RUTA POST)
+    Route::get('/juegos/adivina-campeon', [AdivinaCampeonController::class, 'index'])->name('juegos.adivinacampeon');
+    Route::post('/juegos/adivina-campeon/submit', [AdivinaCampeonController::class, 'submit'])->name('juegos.adivinacampeon.submit');
+
+    // 3-8. Otros juegos (manteniendo los temporales por ahora)
+    Route::get('/juegos/mascotas', [JuegosController::class, 'mascotas'])->name('juegos.mascotas');
+    Route::get('/juegos/goleador', [JuegosController::class, 'goleador'])->name('juegos.goleador');
+    Route::get('/juegos/logos', [JuegosController::class, 'logos'])->name('juegos.logos');
+    Route::get('/juegos/records', [JuegosController::class, 'records'])->name('juegos.records');
+    Route::get('/juegos/sede', [JuegosController::class, 'sede'])->name('juegos.sede');
+    Route::get('/juegos/banderas', [JuegosController::class, 'banderas'])->name('juegos.banderas');
+    
 });
 
-
-// ======================================
-// 4. RUTAS DE AUTENTICACIÓN
-// Carga /register, /login, /logout, etc.
-// ======================================
+// Rutas de Autenticación
 Auth::routes();
