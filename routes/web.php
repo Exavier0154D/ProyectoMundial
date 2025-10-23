@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 // Rutas Públicas
 Route::get('/', [HubController::class, 'index'])->name('hub.index');
 
-Route::get('/enciclopedia', [MundialController::class, 'index'])->name('enciclopedia.index');
+Route::get('/enciclopedia', [MundialController::class, 'index'])->name('mundiales.index');
 Route::get('/enciclopedia/{mundial}', [MundialController::class, 'show'])->name('enciclopedia.show');
 
 // Rutas Protegidas (Requieren autenticación)

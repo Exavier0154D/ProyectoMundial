@@ -15,26 +15,24 @@
 <body class="bg-light-gray"> 
     <div id="app">
         
-<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom shadow-sm font-elegant">
+        {{-- NAVBAR CORREGIDO: Se eliminan navbar-light y bg-light --}}
+<nav class="navbar navbar-expand-md border-bottom shadow-sm font-elegant">
     <div class="container-fluid">
         
         {{-- Contenedor para Centrar el Título Principal --}}
         <div class="w-100 text-center">
-            {{-- CORRECCIÓN CRÍTICA: Apuntamos a la nueva ruta de inicio (Hub) --}}
+            {{-- CORRECCIÓN DEL TEXTO: "Inicio de la Enciclopedia" -> "Enciclopedia" --}}
             <a class="navbar-brand text-dark font-title fs-3 fw-bold" href="{{ route('hub.index') }}" style="letter-spacing: 2px;">
-                Inicio de la Enciclopedia
+                Enciclopedia
             </a>
         </div>
         
-        {{-- Este div de collapse es necesario para los botones de menú (aunque estén vacíos) --}}
         <button class="navbar-toggler position-absolute top-0 start-0 m-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {{-- Los demás enlaces (login/register) se mantienen en la derecha (ms-auto) --}}
             <ul class="navbar-nav ms-auto">
-                
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
@@ -47,7 +45,7 @@
                         </li>
                     @endif
                 @else
-                    {{-- Código de usuario logueado --}}
+                    {{-- Opcional: dropdown de usuario autenticado --}}
                 @endguest
             </ul>
         </div>
@@ -58,5 +56,9 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- ✅ MUY IMPORTANTE: permite cargar scripts como el de tu trivia --}}
+    @stack('scripts')
+
 </body>
 </html>

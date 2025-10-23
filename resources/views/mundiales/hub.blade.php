@@ -24,13 +24,14 @@
             <div class="col-md-5 mb-4">
                 <div class="card h-100 shadow-lg border-dark-subtle text-center card-elegant p-4">
                     <div class="card-body d-flex flex-column justify-content-center">
-                        {{-- RUTA CORREGIDA: Usa img/hub/Enciclopedia.png --}}
+                        {{-- RUTA DE IMAGEN --}}
                         <img src="{{ asset('img/hub/Enciclopedia.png') }}" alt="Sección Enciclopedia" class="img-fluid mb-3" style="max-height: 200px; object-fit: contain;">
                         <h2 class="font-title text-dark fs-3">Sección Enciclopedia</h2>
                         <p class="font-elegant text-muted flex-grow-1">
                             Accede al índice histórico y sumérgete en los detalles de cada torneo desde 1930.
                         </p>
-                        <a href="{{ route('enciclopedia.index') }}" class="btn btn-outline-dark btn-lg mt-3 btn-classic">
+                        {{-- RUTA CORREGIDA: mundiales.index --}}
+                        <a href="{{ route('mundiales.index') }}" class="btn btn-outline-dark btn-lg mt-3 btn-classic">
                             Abrir el Índice
                         </a>
                     </div>
@@ -41,7 +42,7 @@
             <div class="col-md-5 mb-4">
                 <div class="card h-100 shadow-lg border-dark-subtle text-center card-elegant p-4">
                     <div class="card-body d-flex flex-column justify-content-center">
-                        {{-- RUTA CORREGIDA: Usa img/hub/Minijuegos.png --}}
+                        {{-- RUTA DE IMAGEN --}}
                         <img src="{{ asset('img/hub/Minijuegos.png') }}" alt="Zona de Minijuegos" class="img-fluid mb-3" style="max-height: 200px; object-fit: contain;">
                         <h2 class="font-title text-dark fs-3">Zona de Minijuegos</h2>
                         <p class="font-elegant text-muted flex-grow-1">
@@ -56,7 +57,7 @@
                             </a>
                             <p class="mt-2 small text-muted">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="text-decoration-underline">Inicia Sesión</a></p>
                         @else
-                            {{-- Si SÍ está logueado: ¡CAMBIO AQUÍ! Va al índice de juegos --}}
+                            {{-- CORRECCIÓN APLICADA: El usuario logueado va directamente a mundiales.indexjuegos --}}
                             <a href="{{ route('juegos.index') }}" class="btn btn-success btn-lg mt-3 btn-classic">
                                 Comenzar a Jugar
                             </a>
