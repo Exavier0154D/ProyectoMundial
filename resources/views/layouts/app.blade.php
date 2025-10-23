@@ -1,74 +1,90 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- CSRF para AJAX/Fetch --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', config('app.name', 'Proyecto Mundial'))</title>
 
-        <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    {{-- Fuentes --}}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- Vite --}}
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    {{-- Inyección opcional de CSS/JS por vista --}}
+    @stack('head')
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body class="bg-light-gray">
+    <div id="app">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul class="navbar-nav me-auto">
+        {{-- NAVBAR --}}
+        <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm font-elegant">
+            <div class="container-fluid">
 
-                    </ul>
+                {{-- Botón hamburguesa (izquierda) --}}
+                <button class="navbar-toggler me-2" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                                        <ul class="navbar-nav ms-auto">
-                                                @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                {{-- Marca centrada --}}
+                <div class="flex-grow-1 text-center">
+                    <a class="navbar-brand text-dark font-title fs-3 fw-bold"
+                       href="{{ route('hub.index') }}" style="letter-spacing: 2px;">
+                        Enciclopedia
+                    </a>
+                </div>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                {{-- Espaciador para balancear el botón de la izquierda --}}
+                <div class="d-none d-md-block" style="width: 40px;"></div>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                {{-- Menú colapsable --}}
+                <div class="collapse navbar-collapse mt-2 mt-md-0" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto align-items-md-center gap-2">
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                        {{-- Links públicos útiles (opcional) --}}
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="{{ route('mundiales.index') }}">Enciclopedia</a>
+                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="{{ route('juegos.index') }}">Juegos</a>
+                            </li>
+                        @endauth
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+                        {{-- Auth --}}
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            {{-- Aquí puedes añadir dropdown de usuario si lo necesitas --}}
+                            {{-- <li class="nav-item dropdown"> ... </li> --}}
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+
+    {{-- Scripts por-página (ej. juegos) --}}
+    @stack('scripts')
 </body>
 </html>

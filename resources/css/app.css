@@ -1,11 +1,168 @@
-@import 'tailwindcss';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* 1. Importación de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* ==========================================================
+   2. ESTILOS BASE DE LA ENCICLOPEDIA (DISEÑO Y FUENTES)
+   ========================================================== */
+
+/* Variables por defecto (por si no se asigna clase de país) */
+:root {
+    --color-principal: #3d3d3d; /* Gris Oscuro */
+    --color-secundario: #004d00; /* Verde Oscuro (Acento) */
+    --color-fondo-claro: #f7f7f7;
+}
+
+/* Base de tipografía y fondo */
+body {
+    font-family: 'Merriweather', Georgia, serif !important;
+    background-color: var(--color-fondo-claro) !important;
+}
+
+/* Clases de fuentes */
+.text-serif {
+    font-family: 'Merriweather', Georgia, serif !important;
+    line-height: 1.6;
+}
+
+.font-elegant {
+    font-family: 'Merriweather', Georgia, serif !important;
+}
+
+.font-title {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.bg-light-gray {
+    background-color: var(--color-fondo-claro) !important;
+}
+
+
+/* ==========================================================
+   3. ESTILOS BASE DINÁMICO (Aplica las variables por defecto)
+   ========================================================== */
+
+/* H1 y títulos principales */
+.font-title {
+    color: var(--color-principal) !important;
+}
+
+/* Línea de Título H1 (el color doble) */
+h1.display-4.font-title {
+    border-bottom: 3px double var(--color-principal) !important;
+}
+
+/* Divisor Clásico (ajustado para usar variables) */
+.divider-classic {
+    height: 1px;
+    background-color: var(--color-principal);
+    position: relative;
+    margin: 30px auto;
+    width: 60%;
+}
+.divider-classic::after {
+    content: "— 📜 —";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-fondo-claro);
+    padding: 0 10px;
+    color: var(--color-principal);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+}
+
+
+/* ==========================================================
+   4. CLASES DE PAÍSES (INYECCIÓN Y SOBRESCRITURA)
+   ========================================================== */
+
+/* -------------------- DEFINICIONES DE VARIABLES -------------------- */
+
+.mundial-uruguay-30 {
+    --color-principal: #007bc0; /* Azul Celeste (Uruguay) */
+    --color-secundario: #fcd116; /* Dorado/Amarillo (Detalles/Sol) */
+}
+
+.mundial-italia-34 {
+    --color-principal: #009246; /* Verde Bandera (Fuerza) */
+    --color-secundario: #cf2b32; /* Rojo (Detalles/Pasión) */
+}
+
+.mundial-francia-38 {
+    --color-principal: #002654; /* Azul Oscuro (Tradición) */
+    --color-secundario: #ed2939; /* Rojo (Acento/Fuerza) */
+}
+
+.mundial-brasil-50 {
+    --color-principal: #009739; /* Verde Bandera (Base) */
+    --color-secundario: #ffcc00; /* Amarillo (Fuerza/Alegría) */
+}
+
+.mundial-suiza-54 {
+    --color-principal: #d52b1e; /* Rojo Suizo (Fuerza) */
+    --color-secundario: #555555; /* Gris Oscuro (Neutro, elegancia) */
+}
+
+.mundial-suecia-58 {
+    --color-principal: #005293; /* Azul Sueco (Base) */
+    --color-secundario: #ffcd00; /* Amarillo (Brillo) */
+}
+
+.mundial-chile-62 {
+    --color-principal: #d72c1c; /* Rojo (Pasión/Base) */
+    --color-secundario: #003299; /* Azul (Bandera) */
+}
+
+.mundial-inglaterra-66 {
+    --color-principal: #cf142b; /* Rojo Bandera (Base) */
+    --color-secundario: #012169; /* Azul Navy (Elegancia) */
+}
+
+
+/* -------------------- REGLAS DE SOBRESCRITURA CRÍTICA -------------------- */
+/* Usamos el selector de clase de país y !important para ganar la prioridad de Bootstrap */
+
+/* Colores de texto/título (APLICAN COLOR PRINCIPAL) */
+[class*="mundial-"] .text-primary,
+[class*="mundial-"] .font-title {
+    color: var(--color-principal) !important;
+}
+
+/* Colores de acento (APLICAN COLOR SECUNDARIO) */
+[class*="mundial-"] .text-secondary,
+[class*="mundial-"] .text-success {
+    color: var(--color-secundario) !important;
+}
+
+/* Fondos de Botones y Encabezados de Tarjetas (APLICAN COLOR PRINCIPAL) */
+[class*="mundial-"] .btn-dark {
+    background-color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
+    color: white !important; /* Asegura el texto blanco en botones */
+}
+
+/* Fondo de Tarjeta y Tabla (APLICAN COLOR PRINCIPAL) */
+[class*="mundial-"] .card-header.bg-dark,
+[class*="mundial-"] .table-bordered thead.bg-dark,
+[class*="mundial-"] .table-dark thead {
+    background-color: var(--color-principal) !important;
+    color: white !important;
+}
+
+/* Fondos de Acento (Homenaje) */
+[class*="mundial-"] .card-header.bg-success {
+    background-color: var(--color-secundario) !important;
+    color: black !important; /* Para que el texto sea visible sobre el amarillo/dorado */
+}
+
+/* Hover de Botones */
+[class*="mundial-"] .btn-dark:hover {
+    background-color: var(--color-secundario) !important;
+    border-color: var(--color-secundario) !important;
+    color: var(--color-principal) !important; /* Texto del color principal sobre el hover secundario */
 }
