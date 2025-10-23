@@ -9,9 +9,14 @@
             </a>
         </div>
         
-        <h1 class="mb-5 text-center fw-bold text-primary">
+        <h1 class="mb-3 text-center fw-bold text-primary">
             ⚽ Copa Mundial de la FIFA {{ $mundial->anio ?? '2006' }} - {{ $mundial->pais_sede ?? 'Alemania' }} 🇩🇪
         </h1>
+        
+        <div class="text-center mb-5">
+            <img src="{{ asset($mundial->logo_url ?? 'img/2006/logo.jpg') }}" alt="Logo Mundial 2006" class="img-fluid rounded shadow" style="max-height: 200px;">
+            <p class="text-muted mt-2">Logo oficial de la Copa Mundial de la FIFA 2006</p>
+        </div>
 
         <hr>
         

@@ -9,9 +9,14 @@
             </a>
         </div>
         
-        <h1 class="mb-5 text-center fw-bold text-primary">
+        <h1 class="mb-3 text-center fw-bold text-primary">
             ⚽ Copa Mundial de la FIFA {{ $mundial->anio ?? '2002' }} - {{ $mundial->pais_sede ?? 'Corea del Sur y Japón' }} 🇰🇷🇯🇵
         </h1>
+        
+        <div class="text-center mb-5">
+            <img src="{{ asset($mundial->logo_url ?? 'img/2002/logo.jpg') }}" alt="Logo Mundial 2002" class="img-fluid rounded shadow" style="max-height: 200px;">
+            <p class="text-muted mt-2">Logo oficial de la Copa Mundial de la FIFA 2002</p>
+        </div>
 
         <hr>
         

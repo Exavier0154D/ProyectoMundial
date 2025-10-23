@@ -9,9 +9,14 @@
             </a>
         </div>
         
-        <h1 class="mb-5 text-center fw-bold text-primary">
+        <h1 class="mb-3 text-center fw-bold text-primary">
             ⚽ Copa Mundial de la FIFA {{ $mundial->anio ?? '2014' }} - {{ $mundial->pais_sede ?? 'Brasil' }} 🇧🇷
         </h1>
+        
+        <div class="text-center mb-5">
+            <img src="{{ asset($mundial->logo_url ?? 'img/2014/logo.jpg') }}" alt="Logo Mundial 2014" class="img-fluid rounded shadow" style="max-height: 200px;">
+            <p class="text-muted mt-2">Logo oficial de la Copa Mundial de la FIFA 2014</p>
+        </div>
 
         <hr>
         

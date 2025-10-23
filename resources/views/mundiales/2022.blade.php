@@ -9,9 +9,14 @@
             </a>
         </div>
         
-        <h1 class="mb-5 text-center fw-bold text-primary">
+        <h1 class="mb-3 text-center fw-bold text-primary">
             ⚽ Copa Mundial de la FIFA {{ $mundial->anio ?? '2022' }} - {{ $mundial->pais_sede ?? 'Catar' }} 🇶🇦
         </h1>
+        
+        <div class="text-center mb-5">
+            <img src="{{ asset($mundial->logo_url ?? 'img/2022/logo.jpg') }}" alt="Logo Mundial 2022" class="img-fluid rounded shadow" style="max-height: 200px;">
+            <p class="text-muted mt-2">Logo oficial de la Copa Mundial de la FIFA 2022</p>
+        </div>
 
         <hr>
         
@@ -37,13 +42,13 @@
                 📜 La Sede: ¿Por qué Catar?
             </div>
             <div class="card-body">
-                <p>El Mundial de 2022 fue el **primero en Oriente Medio** y el primero en realizarse en invierno del hemisferio norte. Catar fue elegido por:</p>
+                <p>El Mundial de 2022 fue el primero en Oriente Medio y el primero en invierno del hemisferio norte. Catar fue elegido por:</p>
                 <ul>
-                    <li>La inversión masiva en estadios modernos, como el Lusail Stadium, diseñado específicamente para el torneo.</li>
-                    <li>El interés de la FIFA en expandir el fútbol a nuevas regiones geopolíticas.</li>
-                    <li>La infraestructura compacta, con todos los estadios a menos de una hora de Doha, facilitando la logística.</li>
+                    <li>La inversión masiva en estadios modernos, como el Lusail Stadium.</li>
+                    <li>El interés de la FIFA en expandir el fútbol a nuevas regiones.</li>
+                    <li>La compacta infraestructura, con todos los estadios a menos de una hora de Doha.</li>
                 </ul>
-                <p class="fst-italic text-danger">El torneo generó controversias por las condiciones laborales y el cambio de fechas al invierno, pero fue elogiado por su organización y emoción.</p>
+                <p class="fst-italic text-danger">El torneo generó controversias por las condiciones laborales y el cambio de fechas al invierno.</p>
                 
                 <div class="text-center mt-4">
                     <img src="{{ asset('img/2022/lusail_stadium.jpg') }}" alt="Lusail Stadium" class="img-fluid rounded shadow" style="max-height: 350px;">
@@ -113,7 +118,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">🇦🇷 **Lionel Messi** (Argentina) - 3 Asistencias</li>
                             <li class="list-group-item">🇫🇷 Antoine Griezmann (Francia) - 3 Asistencias</li>
-                            <li class="list-group-item">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Harry Kane (Inglaterra) - 3 Asistencias</li>
+                            <li class="list-group-item">🇭🇷 Ivan Perišić (Croacia) - 3 Asistencias</li>
                         </ul>
                     </div>
                 </div>
@@ -168,12 +173,11 @@
             <div class="card-body">
                 <div class="row text-center">
                     @php
-                        // Alineación de la Final (4-2-3-1)
                         $alineacion = [
                             'Portero' => 'Emiliano Martínez',
                             'Defensa' => ['Nahuel Molina', 'Cristian Romero', 'Nicolás Otamendi', 'Marcos Acuña'],
-                            'Mediocampo' => ['Rodrigo De Paul', 'Enzo Fernández', 'Alexis Mac Allister', 'Ángel Di María'],
-                            'Delanteros' => ['Lionel Messi (C)', 'Julián Álvarez'],
+                            'Mediocampo' => ['Rodrigo De Paul', 'Enzo Fernández', 'Alexis Mac Allister'],
+                            'Delanteros' => ['Ángel Di María', 'Lionel Messi (C)', 'Julián Álvarez'],
                             'Entrenador' => 'Lionel Scaloni',
                         ];
                     @endphp
