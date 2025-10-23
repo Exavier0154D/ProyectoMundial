@@ -9,22 +9,26 @@ class JuegosController extends Controller
 {
     public function index()
     {
-        $juegos = [
-            [
-                'nombre' => 'Trivia Histórica',
-                'descripcion' => 'El clásico: responde preguntas de conocimiento general sobre los Mundiales.',
-                'icono_url' => 'img/juegos/trivia.png', 
-                'ruta' => 'juegos.trivia' 
-            ],
-            [
-                // REEMPLAZADO: 'Adivina el Jugador' por 'Adivina el Campeón'
-                'nombre' => 'Adivina el Campeón',
-                'descripcion' => 'Identifica al campeón de un Mundial basándote en pistas clave.',
-                'icono_url' => 'img/juegos/campeon.png', 
-                'ruta' => 'juegos.adivinacampeon' // <--- RUTA CORREGIDA
-            ],
-
-        ];
+       $juegos = [
+    [
+        'nombre' => 'Trivia Histórica',
+        'descripcion' => 'El clásico: responde preguntas de conocimiento general sobre los Mundiales.',
+        'icono_url' => 'img/juegos/trivia.png',
+        'ruta' => 'juegos.trivia'
+    ],
+    [
+        'nombre' => 'Adivina el Campeón',
+        'descripcion' => 'Identifica al campeón de un Mundial basándote en pistas clave.',
+        'icono_url' => 'img/juegos/campeon.png',
+        'ruta' => 'juegos.adivinacampeon'
+    ],
+    [
+        'nombre' => 'Ordena la Historia',
+        'descripcion' => 'Arrastra y ordena cronológicamente los Mundiales por sede o campeón.',
+        'icono_url' => 'img/juegos/ordena.png',
+        'ruta' => 'juegos.ordenahistoria'
+    ],
+];
 
         // CORRECCIÓN: Si el archivo se llama 'juegos.blade.php'
         return view('mundiales.juegos', compact('juegos'));
