@@ -9,13 +9,8 @@
     {{-- ====== Estilos locales del hub ====== --}}
     <style>
         .hub-wrap{
-            --prime:#7f1734;   /* granate elegante */
-            --accent:#c8a600;  /* dorado */
-            --mint:#26b893;    /* menta para detalles */
-            --ink:#0f172a;
-            --muted:#6b7280;
-            --soft:#eef2f7;
-            --card:#ffffff;
+            --prime:#7f1734; --accent:#c8a600; --mint:#26b893;
+            --ink:#0f172a; --muted:#6b7280; --soft:#eef2f7; --card:#ffffff;
         }
         .hero{
             background:
@@ -37,40 +32,25 @@
             border-radius:999px; font-weight:600; font-size:.85rem; color:#3b4151;
         }
         .chip .dot{ width:9px; height:9px; border-radius:999px; background:var(--prime); box-shadow:0 0 0 3px rgba(127,23,52,.14); }
-
         .card-pro{
-            background:var(--card);
-            border-radius:16px;
-            border:1px solid #e9eef5;
+            background:var(--card); border-radius:16px; border:1px solid #e9eef5;
             box-shadow:0 16px 36px rgba(15,23,42,.06);
-            transition: transform .25s ease, box-shadow .25s ease;
-            position:relative;
+            transition: transform .25s ease, box-shadow .25s ease; position:relative;
         }
-        .card-pro:hover{
-            transform: translateY(-4px);
-            box-shadow:0 22px 50px rgba(15,23,42,.10);
-        }
+        .card-pro:hover{ transform: translateY(-4px); box-shadow:0 22px 50px rgba(15,23,42,.10); }
         .card-pro::before{
-            content:"";
-            position:absolute; inset:0; z-index:0; border-radius:16px;
+            content:""; position:absolute; inset:0; z-index:0; border-radius:16px;
             padding:1px; background:linear-gradient(135deg, rgba(127,23,52,.35), rgba(200,166,0,.35));
             -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
         }
         .card-body{ position:relative; z-index:1; }
-        .img-thumb{
-            max-height: 190px; object-fit:cover; border-radius:12px;
-            box-shadow: 0 10px 25px rgba(15,23,42,.10);
-        }
+        .img-thumb{ max-height: 190px; object-fit:cover; border-radius:12px; box-shadow: 0 10px 25px rgba(15,23,42,.10); }
         .btn-classic{ border-radius:999px; font-weight:700; letter-spacing:.2px; }
-        .btn-outline-dark{ background:#fff; }
         .small-muted{ color:var(--muted); }
-
-        /* rayas suaves del fondo del contenedor */
         .bk-stripes{
             position:absolute; inset:0; pointer-events:none; opacity:.15;
-            background:
-              repeating-linear-gradient(135deg, #0000 0 18px, #0001 18px 36px);
+            background: repeating-linear-gradient(135deg, #0000 0 18px, #0001 18px 36px);
         }
     </style>
 
@@ -78,32 +58,32 @@
         <div class="bk-stripes"></div>
 
         {{-- ====== HERO ====== --}}
-        <section class="hero px-4 px-md-5 py-5">
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <section class="hero px-4 px-md-5 py-5 text-center">
+            {{-- Chips centradas --}}
+            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2 mb-3">
                 <span class="chip"><span class="dot"></span> Enciclopedia</span>
                 <span class="chip">Actualizado • <strong>{{ now()->format('M Y') }}</strong></span>
                 <span class="chip">Mundiales disponibles: <strong>22</strong></span>
             </div>
 
-            <div class="text-center mt-3">
-                <h1 class="title font-title display-5 fw-bold mb-2">
-                    Enciclopedia Interactiva de la Copa Mundial 🏆
-                </h1>
-                <p class="subtitle lead font-elegant mb-2">
-                    Elige tu aventura: explora la historia de los mundiales o pon a prueba tus conocimientos.
-                </p>
-                <div class="divider"></div>
-            </div>
+            <h1 class="title font-title display-5 fw-bold mb-2">
+                Enciclopedia Interactiva de la Copa Mundial 🏆
+            </h1>
+            <p class="subtitle lead font-elegant mb-2">
+                Elige tu aventura: explora la historia de los mundiales o pon a prueba tus conocimientos.
+            </p>
+            <div class="divider"></div>
         </section>
 
         {{-- ====== TARJETAS ====== --}}
         <section class="px-4 px-md-5 py-5">
             <div class="row g-4 justify-content-center">
+
                 {{-- Enciclopedia --}}
                 <div class="col-md-6 col-lg-5">
                     <div class="card-pro h-100 p-4">
                         <div class="card-body d-flex flex-column align-items-center text-center">
-                            <img src="{{ asset('img/hub/Enciclopedia.png') }}" alt="Sección Enciclopedia" class="img-fluid img-thumb mb-3">
+                            <img src="{{ asset('img/hub/Enciclopedia.png') }}" class="img-fluid img-thumb mb-3" alt="Enciclopedia">
                             <h2 class="font-title text-dark fs-3 mb-2">Sección Enciclopedia</h2>
                             <p class="font-elegant small-muted mb-3">
                                 Accede al índice histórico y sumérgete en los detalles de cada torneo desde 1930.
@@ -119,36 +99,59 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="card-pro h-100 p-4">
                         <div class="card-body d-flex flex-column align-items-center text-center">
-                            <img src="{{ asset('img/hub/Minijuegos.png') }}" alt="Zona de Minijuegos" class="img-fluid img-thumb mb-3">
+                            <img src="{{ asset('img/hub/Minijuegos.png') }}" class="img-fluid img-thumb mb-3" alt="Minijuegos">
                             <h2 class="font-title text-dark fs-3 mb-2">Zona de Minijuegos</h2>
                             <p class="font-elegant small-muted mb-3">
                                 Demuestra que eres un experto en historia mundialista.
                             </p>
 
                             @guest
-                                <a href="{{ route('register') }}" class="btn btn-dark btn-lg mt-auto btn-classic px-4">
-                                    Crear Cuenta / Jugar
-                                </a>
+                                <a href="{{ route('register') }}" class="btn btn-dark btn-lg mt-auto btn-classic px-4">Crear Cuenta / Jugar</a>
                                 <p class="mt-2 small text-muted">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="text-decoration-underline">Inicia sesión</a></p>
                             @else
-                                <a href="{{ route('juegos.index') }}" class="btn btn-success btn-lg mt-auto btn-classic px-4">
-                                    Comenzar a Jugar
-                                </a>
-                                <p class="mt-2 small text-muted">¡Hola, {{ Auth::user()->name }}!</p>
+                                <a href="{{ route('juegos.index') }}" class="btn btn-success btn-lg mt-auto btn-classic px-4">Comenzar a Jugar</a>
+                                <p class="mt-2 small text-muted mb-1">¡Hola, {{ Auth::user()->name }}!</p>
+
+                                {{-- Opciones de cuenta --}}
+                                <div class="mt-2">
+                                    {{-- Cerrar sesión (POST) --}}
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                       class="btn btn-outline-dark btn-sm btn-classic me-2">
+                                        Cerrar Sesión
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    {{-- Registrar otra cuenta --}}
+                                    @php
+                                        $hasSwitch = \Illuminate\Support\Facades\Route::has('auth.switch');
+                                        $switchHref = $hasSwitch ? route('auth.switch') : route('register');
+                                    @endphp
+                                    <a href="{{ $switchHref }}"
+                                       @unless($hasSwitch)
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit(); setTimeout(()=>window.location.href='{{ route('register') }}', 200);"
+                                       @endunless
+                                       class="btn btn-outline-primary btn-sm btn-classic">
+                                        Registrar otra cuenta
+                                    </a>
+                                </div>
                             @endguest
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {{-- CTA inferior opcional --}}
-            <div class="text-center mt-5">
-                <a href="{{ route('mundiales.index') }}" class="btn btn-outline-dark btn-sm btn-classic me-2">Explorar Enciclopedia</a>
-                @auth
-                <a href="{{ route('juegos.index') }}" class="btn btn-success btn-sm btn-classic">Ir a Minijuegos</a>
-                @endauth
             </div>
         </section>
+
+        {{-- CTA inferior --}}
+        <div class="text-center mb-5">
+            <a href="{{ route('mundiales.index') }}" class="btn btn-outline-dark btn-sm btn-classic me-2">Explorar Enciclopedia</a>
+            @auth
+                <a href="{{ route('juegos.index') }}" class="btn btn-success btn-sm btn-classic">Ir a Minijuegos</a>
+            @endauth
+        </div>
     </div>
 </div>
 @endsection
