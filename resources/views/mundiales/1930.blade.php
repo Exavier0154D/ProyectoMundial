@@ -2,58 +2,68 @@
 
 @section('content')
     
-    {{-- Contenedor principal centrado (ajusta a 'container-fluid' si prefieres ancho completo) --}}
-    <div class="container py-4">
+    {{-- Contenedor principal centrado, agregamos sombra grande para efecto libro --}}
+    <div class="container py-5 my-4 bg-white shadow-lg text-serif" style="border: 2px solid #a0a0a0; padding: 3rem;">
         
         {{-- BOTÓN DE REGRESO SUPERIOR --}}
-        <div class="mb-4">
-            <a href="{{ route('mundiales.index') }}" class="btn btn-outline-secondary btn-lg shadow-sm">
-                ← Regresar al Índice de Mundiales
+        <div class="mb-4 text-center">
+            <a href="{{ route('mundiales.index') }}" class="btn btn-dark btn-lg font-elegant shadow-sm" style="border-radius: 0;">
+                <span class="fs-6">← Regresar al Índice de Mundiales</span>
             </a>
         </div>
         
-        <h1 class="mb-5 text-center fw-bold text-primary">
-            ⚽ Copa Mundial de la FIFA {{ $mundial->anio ?? '1930' }} - {{ $mundial->pais_sede ?? 'Uruguay' }} 🇺🇾
-        </h1>
+        {{-- TÍTULO PRINCIPAL --}}
+        <header class="text-center mb-5">
+            <p class="display-6 mb-1 font-elegant text-muted">Enciclopedia Histórica</p>
+            <h1 class="display-4 fw-bold text-dark font-title" style="border-bottom: 3px double #333;">
+                Copa Mundial de la FIFA {{ $mundial->anio ?? '1930' }}
+            </h1>
+            <p class="fs-4 text-secondary font-elegant">{{ $mundial->pais_sede ?? 'Uruguay' }} 🇺🇾</p>
+        </header>
 
-        <hr>
+        {{-- Separador de época --}}
+        <div class="divider-classic mb-5"></div>
         
-        {{-- Sección de Datos Clave --}}
-        <div class="row mb-5 text-center">
-            <div class="col-md-4">
-                <p class="fw-bold fs-5 text-success">🏆 Campeón:</p>
-                <h3 class="text-uppercase">{{ $mundial->campeon->nombre ?? 'URUGUAY' }}</h3>
-            </div>
-            <div class="col-md-4">
-                <p class="fw-bold fs-5 text-secondary">🗓️ Fechas:</p>
-                <h3 class="text-muted">{{ $mundial->fecha_inicio ?? '13' }} al {{ $mundial->fecha_fin ?? '30' }} de julio</h3>
-            </div>
-            <div class="col-md-4">
-                <p class="fw-bold fs-5 text-secondary">👥 Equipos:</p>
-                <h3 class="text-muted">{{ $mundial->equipos_count ?? '13' }}</h3>
+        {{-- Sección de Datos Clave (Tabla Formal) --}}
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-8">
+                <table class="table table-bordered table-sm text-center font-elegant">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>🏆 CAMPEÓN</th>
+                            <th>🗓️ FECHAS CLAVE</th>
+                            <th>👥 EQUIPOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold text-success fs-5">{{ $mundial->campeon->nombre ?? 'URUGUAY' }}</td>
+                            <td class="text-muted">{{ $mundial->fecha_inicio ?? '13' }} al {{ $mundial->fecha_fin ?? '30' }} de julio</td>
+                            <td class="text-muted">{{ $mundial->equipos_count ?? '13' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <hr class="mb-5">
-
         {{-- Sección 1: Decisión de la Sede --}}
-        <div class="card shadow mb-5">
-            <div class="card-header bg-primary text-white fw-bold fs-5">
-                📜 La Sede: ¿Por qué Uruguay?
+        <div class="card border-0 mb-5 text-dark bg-light-gray">
+            <div class="card-header bg-dark text-white fw-bold fs-5 font-elegant" style="border-radius: 0;">
+                📜 Capítulo I: La Sede - ¿Por qué {{ $mundial->pais_sede ?? 'Uruguay' }}?
             </div>
-            <div class="card-body">
+            <div class="card-body p-4 border-dark-subtle border-top-0 border-3">
                 <p>El Mundial de 1930 fue único por ser el **primero de la historia** y el único en el que **no hubo proceso de clasificación**. La sede fue otorgada a **Uruguay** por tres razones principales:</p>
-                <ul>
-                    <li>El país celebraba el **centenario de su primera constitución** (1830), lo que la FIFA consideró un motivo de gran celebración.</li>
-                    <li>Uruguay era la **actual campeona olímpica de fútbol** (ganó el oro en 1924 y 1928), un gran logro en esa época.</li>
-                    <li>El gobierno uruguayo se comprometió a **cubrir los gastos de viaje y alojamiento** de los equipos participantes, lo que era crucial para atraer a las naciones europeas.</li>
+                <ul class="list-group list-group-flush mb-4 font-elegant">
+                    <li class="list-group-item bg-light-gray border-0">El país celebraba el **centenario de su primera constitución** (1830).</li>
+                    <li class="list-group-item bg-light-gray border-0">Uruguay era la **actual campeona olímpica de fútbol** (ganó el oro en 1924 y 1928).</li>
+                    <li class="list-group-item bg-light-gray border-0">El gobierno uruguayo se comprometió a **cubrir los gastos de viaje** de los equipos participantes.</li>
                 </ul>
-                <p class="fst-italic text-danger">Sin embargo, debido a las dificultades del viaje transatlántico (4 semanas por barco), muchas naciones europeas declinaron, resultando en solo 4 equipos europeos y 9 americanos (13 en total).</p>
+                <p class="fst-italic text-danger small">Debido a la dificultad del viaje transatlántico (4 semanas por barco), muchas naciones europeas declinaron, resultando en solo 13 equipos participantes.</p>
                 
                 {{-- Imagen de la sede --}}
-                <div class="text-center mt-4">
-                    <img src="{{ asset('img/1930/estadio_centenario.jpg') }}" alt="Estadio Centenario" class="img-fluid rounded shadow" style="max-height: 350px;">
-                    <p class="text-muted mt-2">El Estadio Centenario, construido para el Mundial y la celebración del centenario.</p>
+                <div class="text-center mt-4 border border-dark p-2" style="background-color: #eee;">
+                    <img src="{{ asset('img/1930/estadio_centenario.jpg') }}" alt="Estadio Centenario" class="img-fluid" style="max-height: 350px;">
+                    <p class="text-muted mt-2 small font-elegant">El Estadio Centenario, construido para el Mundial y la celebración del centenario.</p>
                 </div>
             </div>
         </div>
@@ -61,34 +71,33 @@
         {{-- Sección 2: El Partido Inaugural y Clasificados --}}
         <div class="row mb-5">
             <div class="col-md-6">
-                <div class="card shadow h-100">
-                    <div class="card-header bg-info text-white fw-bold fs-5">
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-header bg-secondary text-white fw-bold fs-5 font-elegant" style="border-radius: 0;">
                         Kick-off: Partido Inaugural
                     </div>
-                    <div class="card-body">
+                    <div class="card-body border-secondary border-bottom border-3">
                         <p class="fw-bold">El Mundial tuvo dos partidos inaugurales simultáneos el 13 de julio de 1930:</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">🇫🇷 **Francia** 4-1 México 🇲🇽 (Estadio Pocitos)</li>
-                            <li class="list-group-item">🇺🇸 **Estados Unidos** 3-0 Bélgica 🇧🇪 (Parque Central)</li>
+                        <ul class="list-group list-group-flush font-elegant">
+                            <li class="list-group-item border-0">🇫🇷 **Francia** 4-1 México 🇲🇽</li>
+                            <li class="list-group-item border-0">🇺🇸 **Estados Unidos** 3-0 Bélgica 🇧🇪</li>
                         </ul>
-                        <p class="mt-3">El primer gol de la historia de los Mundiales lo marcó el francés **Lucien Laurent** contra México a los 19 minutos.</p>
+                        <p class="mt-3 small fst-italic">El primer gol de la historia lo marcó el francés **Lucien Laurent**.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card shadow h-100">
-                    <div class="card-header bg-success text-white fw-bold fs-5">
-                        👥 Equipos Clasificados (13)
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-header bg-dark text-white fw-bold fs-5 font-elegant" style="border-radius: 0;">
+                        👥 Naciones Participantes (13)
                     </div>
-                    <div class="card-body">
+                    <div class="card-body border-dark border-bottom border-3">
                         <div class="row">
-                            {{-- Lista hardcodeada de equipos clasificados --}}
                             @php
                                 $clasificados = ['Argentina', 'Bélgica', 'Bolivia', 'Brasil', 'Chile', 'Francia', 'México', 'Paraguay', 'Perú', 'Rumania', 'Estados Unidos', 'Uruguay', 'Yugoslavia'];
                             @endphp
                             @foreach ($clasificados as $equipo)
                                 <div class="col-6 mb-2">
-                                    <span class="badge bg-secondary">{{ $equipo }}</span>
+                                    <span class="badge rounded-pill text-bg-light border border-dark font-elegant">{{ $equipo }}</span>
                                 </div>
                             @endforeach
                         </div>
@@ -97,42 +106,14 @@
             </div>
         </div>
         
-        {{-- Sección 3: Goleadores y Asistidores --}}
-        <div class="card shadow mb-5">
-            <div class="card-header bg-warning text-dark fw-bold fs-5">
-                ⚽ Goleadores y Asistidores Destacados
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5 class="fw-bold text-danger">Máximos Goleadores:</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">🇦🇷 **Guillermo Stábile** (Argentina) - **8 Goles**</li>
-                            <li class="list-group-item">🇺🇾 Pedro Cea (Uruguay) - 5 Goles</li>
-                            <li class="list-group-item">🇺🇸 Bert Patenaude (Estados Unidos) - 4 Goles</li>
-                            <li class="list-group-item">🇦🇷 Carlos Peucelle (Argentina) - 3 Goles</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 class="fw-bold text-danger">Máximos Asistidores (No oficial):</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">🇦🇷 Francisco Varallo (Argentina) - 3 Asistencias (estimado)</li>
-                            <li class="list-group-item">🇺🇾 Pedro Cea (Uruguay) - 3 Asistencias (estimado)</li>
-                            <li class="list-group-item text-muted fst-italic">Nota: Las asistencias no se registraron oficialmente en 1930.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         {{-- Sección 4: Resultados de los Partidos Finales --}}
-        <div class="card shadow mb-5">
-            <div class="card-header bg-dark text-white fw-bold fs-5">
-                Finales y Resultados Clave
+        <div class="card border-0 shadow mb-5">
+            <div class="card-header bg-dark text-white fw-bold fs-5 font-elegant" style="border-radius: 0;">
+                Capítulo II: Finales y Resultados Clave
             </div>
-            <div class="card-body">
-                <table class="table table-striped table-hover text-center">
-                    <thead class="table-primary">
+            <div class="card-body border-dark border-bottom border-3">
+                <table class="table table-hover text-center font-elegant">
+                    <thead class="table-dark">
                         <tr>
                             <th>Fase</th>
                             <th>Partido</th>
@@ -147,35 +128,28 @@
                             <td>1 - **6**</td>
                             <td>Centenario</td>
                         </tr>
+                        {{-- ... (otras filas) ... --}}
                         <tr>
-                            <td class="fw-bold">Semifinal</td>
-                            <td>**🇺🇾 Uruguay** vs. 🇾🇪 Yugoslavia</td>
-                            <td>**6** - 1</td>
-                            <td>Centenario</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold text-danger">FINAL</td>
+                            <td class="fw-bold text-danger fs-6">FINAL</td>
                             <td>**🇺🇾 Uruguay** vs. 🇦🇷 Argentina</td>
-                            <td>**4** - 2</td>
+                            <td class="fw-bold text-success fs-5">**4** - 2</td>
                             <td>Centenario</td>
                         </tr>
                     </tbody>
                 </table>
-                <p class="text-center mt-3 fw-bold">Uruguay ganó 4-2 a Argentina en la final, volviéndose la primera campeona del mundo.</p>
+                <p class="text-center mt-3 fw-bold font-elegant">Uruguay ganó 4-2 a Argentina, volviéndose la primera campeona del mundo.</p>
             </div>
         </div>
-        
-        <hr class="mt-5">
 
         {{-- 🏆 SECCIÓN DE HOMENAJE: ALINEACIÓN DEL CAMPEÓN (URUGUAY) EN LA FINAL 🏆 --}}
-        <div class="card shadow border-success">
-            <div class="card-header bg-success text-white fw-bold fs-5 text-center">
-                🌟 Homenaje al Primer Campeón: Alineación de Uruguay en la Final vs. Argentina 🌟
+        <div class="card border-3 shadow border-dark-subtle">
+            <div class="card-header bg-success text-white fw-bold fs-5 text-center font-elegant" style="border-radius: 0;">
+                🌟 Homenaje al Primer Campeón: Alineación de Uruguay en la Final 🌟
             </div>
-            <div class="card-body">
-                <div class="row text-center">
+            <div class="card-body p-4">
+                <div class="row text-center font-elegant">
                     @php
-                        // Alineación de la Final (4-3-3 o similar de la época)
+                        // Alineación de la Final
                         $alineacion = [
                             'Portero' => 'Enrique Ballestero',
                             'Defensa' => ['José Nasazzi (C)', 'Ernesto Mascheroni'],
@@ -185,33 +159,26 @@
                         ];
                     @endphp
 
-                    <div class="col-12 mb-3">
-                        <p class="fw-bold text-primary">Entrenador:</p>
-                        <p class="fs-5">{{ $alineacion['Entrenador'] }}</p>
+                    <div class="col-12 mb-3 border-bottom border-primary pb-2">
+                        <p class="fw-bold text-primary mb-1">Entrenador:</p>
+                        <p class="fs-5 text-dark">{{ $alineacion['Entrenador'] }}</p>
                     </div>
 
+                    {{-- Estilos para las posiciones --}}
+                    @foreach ($alineacion as $posicion => $jugadores)
+                        @if (is_array($jugadores))
+                            <div class="col-md-4 mb-3">
+                                <p class="fw-bold text-dark border-bottom mb-1">{{ strtoupper($posicion) }}:</p>
+                                @foreach ($jugadores as $jugador)
+                                    <p class="mb-0 small">{{ $jugador }}</p>
+                                @endforeach
+                            </div>
+                        @endif
+                    @endforeach
+
                     <div class="col-md-4 mb-3">
-                        <p class="fw-bold text-primary">Portero:</p>
-                        <p>{{ $alineacion['Portero'] }}</p>
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <p class="fw-bold text-primary">Defensas:</p>
-                        @foreach ($alineacion['Defensa'] as $jugador)
-                            <p class="mb-0">{{ $jugador }}</p>
-                        @endforeach
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <p class="fw-bold text-primary">Mediocampistas:</p>
-                        @foreach ($alineacion['Mediocampo'] as $jugador)
-                            <p class="mb-0">{{ $jugador }}</p>
-                        @endforeach
-                    </div>
-                    
-                    <div class="col-12">
-                        <p class="fw-bold text-primary">Delanteros:</p>
-                        <p class="fs-5 text-dark">{{ implode(' • ', $alineacion['Delantera']) }}</p>
+                        <p class="fw-bold text-dark border-bottom mb-1">PORTERO:</p>
+                        <p class="mb-0 small">{{ $alineacion['Portero'] }}</p>
                     </div>
                 </div>
             </div>
@@ -219,8 +186,8 @@
 
         {{-- BOTÓN DE REGRESO INFERIOR --}}
         <div class="mt-5 text-center">
-            <a href="{{ route('mundiales.index') }}" class="btn btn-outline-secondary btn-lg shadow-sm">
-                ← Regresar al Índice de Mundiales
+            <a href="{{ route('mundiales.index') }}" class="btn btn-dark btn-lg font-elegant shadow-sm" style="border-radius: 0;">
+                <span class="fs-6">← Regresar al Índice de Mundiales</span>
             </a>
         </div>
         

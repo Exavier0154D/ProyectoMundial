@@ -9,7 +9,7 @@ class Mundial extends Model
 {
     use HasFactory;
 
-    // 👇 Esta línea soluciona el error
+   
     protected $table = 'mundiales';
 
     // Campos que se pueden llenar masivamente
