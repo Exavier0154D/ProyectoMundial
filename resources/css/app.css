@@ -5,94 +5,24 @@
 /* 1. Importación de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 
-/* 2. Definición de Clases de Fuentes y Utilidades */
-/* Clases globales (las usaremos en el body y en elementos específicos) */
-.text-serif {
-    font-family: 'Merriweather', Georgia, serif !important;
-    line-height: 1.6;
+/* ==========================================================
+   2. ESTILOS BASE DE LA ENCICLOPEDIA (DISEÑO Y FUENTES)
+   ========================================================== */
+
+/* Variables por defecto (por si no se asigna clase de país) */
+:root {
+    --color-principal: #3d3d3d; /* Gris Oscuro */
+    --color-secundario: #004d00; /* Verde Oscuro (Acento) */
+    --color-fondo-claro: #f7f7f7;
 }
 
-.font-elegant {
-    font-family: 'Merriweather', Georgia, serif !important;
-}
-
-.font-title {
-    font-family: 'Playfair Display', serif !important;
-}
-
-.bg-light-gray {
-    background-color: #f7f7f7 !important; /* Fondo blanco roto/crema para el body */
-}
-
-/* 3. Estilos Exclusivos para el Mundial 1930 (AUMENTANDO ESPECIFICIDAD) */
-.mundial-1930 {
-    
-    /* Forzar texto justificado y fuente del cuerpo */
-    .mundial-1930 p {
-        text-align: justify;
-        font-family: 'Merriweather', Georgia, serif !important;
-    }
-    
-    /* Colores más sobrios y texto blanco para card-headers */
-    .mundial-1930 .card-header.bg-dark,
-    .mundial-1930 .card-header.bg-primary {
-        background-color: #4b4b4b !important;
-        color: white !important; /* Asegurar que el texto sea blanco */
-    }
-    
-    .mundial-1930 .card-header.bg-success {
-        background-color: #004d00 !important; 
-        color: white !important;
-    }
-
-    /* Estilo para títulos (H1) */
-    .mundial-1930 h1.display-4,
-    .mundial-1930 .font-title {
-        color: #3d3d3d !important;
-        font-family: 'Playfair Display', serif !important;
-    }
-
-    /* Divisor Clásico */
-    .mundial-1930 .divider-classic {
-        height: 1px;
-        background-color: #333;
-        position: relative;
-        margin: 30px auto;
-        width: 60%;
-    }
-    
-    .mundial-1930 .divider-classic::after {
-        content: "— 📜 —";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #f7f7f7; /* Fondo del divisor, a juego con el body */
-        padding: 0 10px;
-        color: #333;
-        font-family: 'Playfair Display', serif;
-        font-size: 1.2rem;
-    }
-    
-    /* Asegurar esquinas de botones */
-    .mundial-1930 .btn {
-        border-radius: 0 !important;
-    }
-
-    /* Asegurar fuente en la tabla */
-    .mundial-1930 table {
-        font-family: 'Merriweather', Georgia, serif !important;
-    }
-
-    /* ... [Tu código de importaciones de Tailwind/Bootstrap y Google Fonts] ... */
-
-/* 2. Definición de Clases de Fuentes y Utilidades */
-/* Aseguramos que la tipografía se aplique a los elementos del cuerpo (Body) */
+/* Base de tipografía y fondo */
 body {
     font-family: 'Merriweather', Georgia, serif !important;
-    background-color: #f7f7f7 !important; /* Fondo blanco roto/crema */
+    background-color: var(--color-fondo-claro) !important;
 }
 
+/* Clases de fuentes */
 .text-serif {
     font-family: 'Merriweather', Georgia, serif !important;
     line-height: 1.6;
@@ -100,47 +30,139 @@ body {
 
 .font-elegant {
     font-family: 'Merriweather', Georgia, serif !important;
-    color: #3d3d3d !important; /* Gris oscuro para el texto elegante */
 }
 
 .font-title {
     font-family: 'Playfair Display', serif !important;
-    color: #3d3d3d !important;
 }
 
 .bg-light-gray {
-    background-color: #f7f7f7 !important;
-}
-
-/* 3. Estilos de Colores Elegantes y Sobrios (Index y Navbar) */
-
-/* Títulos Principales */
-.container-fluid h1 {
-    color: #4b4b4b !important; /* Gris oscuro elegante */
-    font-family: 'Playfair Display', serif !important;
-}
-
-/* Botones de Tarjeta y Navbar (Sobrio) */
-.btn-outline-dark, .btn-dark, .btn-outline-primary {
-    border-radius: 0 !important;
-    border-color: #6c757d !important; /* Borde gris oscuro */
-    color: #6c757d !important;
-}
-
-/* Color de acento para Campeón (Success) */
-.text-success {
-    color: #004d00 !important; /* Verde oscuro (como el laurel) */
-    font-weight: bold;
+    background-color: var(--color-fondo-claro) !important;
 }
 
 
-/* 4. Ajustes Específicos del Navbar */
-.navbar-brand.font-title {
-    color: #3d3d3d !important;
-    font-size: 2rem !important;
+/* ==========================================================
+   3. ESTILOS BASE DINÁMICO (Aplica las variables por defecto)
+   ========================================================== */
+
+/* H1 y títulos principales */
+.font-title {
+    color: var(--color-principal) !important;
+}
+
+/* Línea de Título H1 (el color doble) */
+h1.display-4.font-title {
+    border-bottom: 3px double var(--color-principal) !important;
+}
+
+/* Divisor Clásico (ajustado para usar variables) */
+.divider-classic {
+    height: 1px;
+    background-color: var(--color-principal);
+    position: relative;
+    margin: 30px auto;
+    width: 60%;
+}
+.divider-classic::after {
+    content: "— 📜 —";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-fondo-claro);
+    padding: 0 10px;
+    color: var(--color-principal);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
 }
 
 
-/* ... [Tu código exclusivo para .mundial-1930] ... */
-/* Asegúrate de que las reglas dentro de .mundial-1930 también usen los !important */
+/* ==========================================================
+   4. CLASES DE PAÍSES (INYECCIÓN Y SOBRESCRITURA)
+   ========================================================== */
+
+/* -------------------- DEFINICIONES DE VARIABLES -------------------- */
+
+.mundial-uruguay-30 {
+    --color-principal: #007bc0; /* Azul Celeste (Uruguay) */
+    --color-secundario: #fcd116; /* Dorado/Amarillo (Detalles/Sol) */
+}
+
+.mundial-italia-34 {
+    --color-principal: #009246; /* Verde Bandera (Fuerza) */
+    --color-secundario: #cf2b32; /* Rojo (Detalles/Pasión) */
+}
+
+.mundial-francia-38 {
+    --color-principal: #002654; /* Azul Oscuro (Tradición) */
+    --color-secundario: #ed2939; /* Rojo (Acento/Fuerza) */
+}
+
+.mundial-brasil-50 {
+    --color-principal: #009739; /* Verde Bandera (Base) */
+    --color-secundario: #ffcc00; /* Amarillo (Fuerza/Alegría) */
+}
+
+.mundial-suiza-54 {
+    --color-principal: #d52b1e; /* Rojo Suizo (Fuerza) */
+    --color-secundario: #555555; /* Gris Oscuro (Neutro, elegancia) */
+}
+
+.mundial-suecia-58 {
+    --color-principal: #005293; /* Azul Sueco (Base) */
+    --color-secundario: #ffcd00; /* Amarillo (Brillo) */
+}
+
+.mundial-chile-62 {
+    --color-principal: #d72c1c; /* Rojo (Pasión/Base) */
+    --color-secundario: #003299; /* Azul (Bandera) */
+}
+
+.mundial-inglaterra-66 {
+    --color-principal: #cf142b; /* Rojo Bandera (Base) */
+    --color-secundario: #012169; /* Azul Navy (Elegancia) */
+}
+
+
+/* -------------------- REGLAS DE SOBRESCRITURA CRÍTICA -------------------- */
+/* Usamos el selector de clase de país y !important para ganar la prioridad de Bootstrap */
+
+/* Colores de texto/título (APLICAN COLOR PRINCIPAL) */
+[class*="mundial-"] .text-primary,
+[class*="mundial-"] .font-title {
+    color: var(--color-principal) !important;
+}
+
+/* Colores de acento (APLICAN COLOR SECUNDARIO) */
+[class*="mundial-"] .text-secondary,
+[class*="mundial-"] .text-success {
+    color: var(--color-secundario) !important;
+}
+
+/* Fondos de Botones y Encabezados de Tarjetas (APLICAN COLOR PRINCIPAL) */
+[class*="mundial-"] .btn-dark {
+    background-color: var(--color-principal) !important;
+    border-color: var(--color-principal) !important;
+    color: white !important; /* Asegura el texto blanco en botones */
+}
+
+/* Fondo de Tarjeta y Tabla (APLICAN COLOR PRINCIPAL) */
+[class*="mundial-"] .card-header.bg-dark,
+[class*="mundial-"] .table-bordered thead.bg-dark,
+[class*="mundial-"] .table-dark thead {
+    background-color: var(--color-principal) !important;
+    color: white !important;
+}
+
+/* Fondos de Acento (Homenaje) */
+[class*="mundial-"] .card-header.bg-success {
+    background-color: var(--color-secundario) !important;
+    color: black !important; /* Para que el texto sea visible sobre el amarillo/dorado */
+}
+
+/* Hover de Botones */
+[class*="mundial-"] .btn-dark:hover {
+    background-color: var(--color-secundario) !important;
+    border-color: var(--color-secundario) !important;
+    color: var(--color-principal) !important; /* Texto del color principal sobre el hover secundario */
 }
